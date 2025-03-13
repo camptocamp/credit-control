@@ -40,20 +40,20 @@ class AccountMove(models.Model):
             ("invoice_id", "in", self.ids),
             ("state", "!=", "draft"),
         ]
+        if self:
+            cc_nondraft_lines = cc_line_obj.search(nondraft_domain, limit=1)
 
-        cc_nondraft_lines = cc_line_obj.search(nondraft_domain, limit=1)
-
-        if cc_nondraft_lines:
-            raise UserError(
-                _(
-                    "You cannot cancel this invoice.\n"
-                    "A payment reminder has already been "
-                    "sent to the customer.\n"
-                    "You must create a credit note and "
-                    "issue a new invoice."
+            if cc_nondraft_lines:
+                raise UserError(
+                    _(
+                        "You cannot cancel this invoice.\n"
+                        "A payment reminder has already been "
+                        "sent to the customer.\n"
+                        "You must create a credit note and "
+                        "issue a new invoice."
+                    )
                 )
-            )
-        draft_domain = [("invoice_id", "in", self.ids), ("state", "=", "draft")]
-        cc_draft_line = cc_line_obj.search(draft_domain)
-        cc_draft_line.unlink()
+            draft_domain = [("invoice_id", "in", self.ids), ("state", "=", "draft")]
+            cc_draft_line = cc_line_obj.search(draft_domain)
+            cc_draft_line.unlink()
         return super().button_cancel()
