@@ -63,9 +63,9 @@ Authors
 Contributors
 ------------
 
--  Telmo Santos <telmo.santos@camptocamp.com>
--  Victor Vermot-Petit-Outhenin <victorvermot@gmail.com>
--  Khoi (Kien Kim) <khoikk@trobz.com>
+- Telmo Santos <telmo.santos@camptocamp.com>
+- Victor Vermot-Petit-Outhenin <victorvermot@gmail.com>
+- Khoi (Kien Kim) <khoikk@trobz.com>
 
 Other credits
 -------------
@@ -73,7 +73,7 @@ Other credits
 The migration of this module from 17.0 to 18.0 was financially supported
 by:
 
--  Camptocamp
+- Camptocamp
 
 Maintainers
 -----------
