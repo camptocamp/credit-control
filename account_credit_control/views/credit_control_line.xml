@@ -25,7 +25,18 @@
                             <field name="date" readonly="state != 'draft'" />
                             <field name="date_entry" />
                             <field name="date_due" readonly="state != 'draft'" />
-                            <field name="channel" readonly="state != 'draft'" />
+                            <field
+                                name="use_channel_letter"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="use_channel_email"
+                                readonly="state != 'draft'"
+                            />
+                            <field
+                                name="use_channel_phone"
+                                readonly="state != 'draft'"
+                            />
                             <field name="date_sent" readonly="state != 'draft'" />
                             <field name="communication_id" />
                         </group>
@@ -57,7 +68,6 @@
             <search>
                 <group>
                     <field name="date" />
-                    <field name="channel" />
                     <field name="policy_id" />
                     <separator />
                     <field name="partner_id" />
@@ -98,6 +108,23 @@
                         domain="[('state', 'in', ('error', 'email_error'))]"
                         help="An error has occured during the sending of the email."
                     />
+                    <separator />
+                    <filter
+                        name="filter_channel_letter"
+                        string="Letter"
+                        domain="[('use_channel_letter', '=', True)]"
+                    />
+                    <filter
+                        name="filter_channel_email"
+                        string="Email"
+                        domain="[('use_channel_email', '=', True)]"
+                    />
+                    <filter
+                        name="filter_channel_phone"
+                        string="Phone"
+                        domain="[('use_channel_phone', '=', True)]"
+                    />
+                    <separator />
                     <filter
                         name="filter_manual"
                         string="Manual change"
@@ -155,12 +182,6 @@
                         string="Credit policy level"
                     />
                     <filter
-                        name="group_by_channel"
-                        domain='[]'
-                        context="{'group_by': 'channel'}"
-                        string="Channel"
-                    />
-                    <filter
                         name="group_by_overridden"
                         domain='[]'
                         context="{'group_by': 'manually_overridden'}"
@@ -198,7 +219,9 @@
                 <field name="level" />
                 <field name="manually_overridden" readonly="state != 'draft'" />
                 <field name="state" />
-                <field name="channel" readonly="state != 'draft'" />
+                <field name="use_channel_letter" readonly="state != 'draft'" />
+                <field name="use_channel_email" readonly="state != 'draft'" />
+                <field name="use_channel_phone" readonly="state != 'draft'" />
                 <field name="invoice_id" />
                 <field name="partner_id" readonly="True" />
                 <field name="manual_followup" />
